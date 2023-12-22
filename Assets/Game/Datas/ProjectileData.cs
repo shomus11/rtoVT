@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerShipData", menuName = "SO/Projectile")]
+[CreateAssetMenu(fileName = "ProjectileData", menuName = "SO/Projectile")]
 public class ProjectileData : ScriptableObject
 {
     [Tooltip("General Component")]

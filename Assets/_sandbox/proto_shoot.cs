@@ -17,7 +17,7 @@ public class proto_shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+ 
     }
 
     private IEnumerator Shooting()

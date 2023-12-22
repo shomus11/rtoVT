@@ -7,7 +7,7 @@ public class proto_objPool : MonoBehaviour
     public static proto_objPool Instance;
 
     private List<GameObject> PooledObjs = new List<GameObject>();
-    private int totalPooled = 10;
+    private int totalPooled = 20;
 
     public GameObject prefabObj;
 
@@ -28,7 +28,7 @@ public class proto_objPool : MonoBehaviour
             PooledObjs.Add(obj);
         }
     }
-
+ 
     public GameObject GetPooledObj()
     {
         for (int i = 0; i < PooledObjs.Count; i++)

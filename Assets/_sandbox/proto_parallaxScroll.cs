@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class proto_parallaxScroll : MonoBehaviour
-{
+{ 
     public RawImage Image;
     public float x_limit;
     public float y_limit;
