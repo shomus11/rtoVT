@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53724b4f09c985c489b1c2346d76cc2f, type: 3}
   m_Name: PlayerShipDataTest
   m_EditorClassIdentifier: 
-  healthPoint: 3
+  healthPoint: 100
   moveSpeed: 10
-  fireRate: 0
+  fireRate: 0.2

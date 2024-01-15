@@ -7,7 +7,7 @@ using UnityEngine;
 public class proto_enemySpawn : MonoBehaviour
 {
     public GameObject enemyPrefabs;
-    public int maxEnemy = 6;
+    public int maxEnemy = 30;
     public float totalEnemy;
     public List<WavePattern> row = new List<WavePattern>();
     public Transform[ , ] spawnArea;
@@ -32,7 +32,8 @@ public class proto_enemySpawn : MonoBehaviour
             {
                 if (row[i].columb[j] == 1)
                 {
-                    Instantiate(enemyPrefabs, row[i].pos[j]);
+                    GameObject enemy = Instantiate(enemyPrefabs, row[i].pos[j]);
+                    enemy.transform.localPosition = Vector2.zero;
                 }
             }
         }
