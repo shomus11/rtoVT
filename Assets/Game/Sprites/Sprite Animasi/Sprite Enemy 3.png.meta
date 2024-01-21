@@ -1,0 +1,783 @@
+fileFormatVersion: 2
+guid: d4fed83b14957094cba8de30901e34cc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite Enemy 3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8800
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9913aafabb3e6b4d86bc5fbdf0c45b7
+      internalID: 2120593695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_1
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 8800
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e68491d2415b04fa3015b20140f721
+      internalID: -1839961420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_2
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 8800
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd9243275e040a4fa0a3ce41ef8321a
+      internalID: -1685671882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_3
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 8800
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5cf8df0273de79479d29fcf88351b69
+      internalID: 977118751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_4
+      rect:
+        serializedVersion: 2
+        x: 8800
+        y: 8800
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc25ac1863df1ec40a84c0e8a1fffb6b
+      internalID: 715556032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_5
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 8800
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36255e5bfe3742c408071434cd268f0d
+      internalID: -857062924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6600
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f55b8bcb5b0d8f4ba99aba2627909a6
+      internalID: -187835161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_7
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 6600
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1b4140ceda39c4dafbe4daef42535f
+      internalID: -1039763737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_8
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 6600
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49c88920af7849e4d9821455a7f618cb
+      internalID: 1945240901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_9
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 6600
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce9fa0eb5847104ca43e0e1c4dcc79f
+      internalID: -397445496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_10
+      rect:
+        serializedVersion: 2
+        x: 8800
+        y: 6600
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd0027ba1753d1488ed9d68074d93b1
+      internalID: 1443796178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_11
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 6600
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c29259753930f94090c32b6e64f8aaf
+      internalID: -6364026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4400
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c91b81990b7c1c34ea3494f2ec71b4fa
+      internalID: 962819284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_13
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 4400
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787f3af4b2b07714399628fec01b1fa3
+      internalID: -2003451317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_14
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 4400
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30119ef0d80088340bf72ed043451b99
+      internalID: 501918558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_15
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 4400
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 052f4900c36c13442b87d01a60d91465
+      internalID: 1923183920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_16
+      rect:
+        serializedVersion: 2
+        x: 8800
+        y: 4400
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31969cbb60a30e2428aed84b9a054280
+      internalID: -1017146982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_17
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 4400
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4644d1c99da9644e8590ffdeeaf1a9f
+      internalID: 1306942253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2200
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfb07417552b3fe45965206fceb7f50c
+      internalID: 1162679577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_19
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2200
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0b6a9a33cf5d6443bccee0c22f7b76b
+      internalID: -1439764289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_20
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 2200
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8bee5cf621e3d847aa5bacf4ca479ce
+      internalID: -1625618678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_21
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 2200
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70011433d6601864485ccdebffbb2883
+      internalID: -1836516211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_22
+      rect:
+        serializedVersion: 2
+        x: 8800
+        y: 2200
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb21a3be88eee849b3d3d01474c1439
+      internalID: 1308599871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_23
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 2200
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 248e89745c7e151478e38c4995ef5f61
+      internalID: 1979043421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d9a8b5b07f63043803fc12fe82ef8e
+      internalID: 1952225474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_25
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaa3fd7243008c34bbe75710ba446839
+      internalID: 2018104522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_26
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 0
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 616947fb8022e424da77095c0ab0bda7
+      internalID: 1114541879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_27
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 0
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5325477e957f444b04b0a7ff7a23a8
+      internalID: -932592242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_28
+      rect:
+        serializedVersion: 2
+        x: 8800
+        y: 0
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 546ebde1a4a95a644ad087d664865d3f
+      internalID: 1967088169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite Enemy 3_29
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 0
+        width: 2200
+        height: 2200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc230314b37149d448d24828a78c268b
+      internalID: 87684809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Sprite Enemy 3_10: 1443796178
+      Sprite Enemy 3_19: -1439764289
+      Sprite Enemy 3_27: -932592242
+      Sprite Enemy 3_14: 501918558
+      Sprite Enemy 3_20: -1625618678
+      Sprite Enemy 3_12: 962819284
+      Sprite Enemy 3_25: 2018104522
+      Sprite Enemy 3_6: -187835161
+      Sprite Enemy 3_9: -397445496
+      Sprite Enemy 3_16: -1017146982
+      Sprite Enemy 3_15: 1923183920
+      Sprite Enemy 3_1: -1839961420
+      Sprite Enemy 3_5: -857062924
+      Sprite Enemy 3_17: 1306942253
+      Sprite Enemy 3_22: 1308599871
+      Sprite Enemy 3_0: 2120593695
+      Sprite Enemy 3_24: 1952225474
+      Sprite Enemy 3_8: 1945240901
+      Sprite Enemy 3_2: -1685671882
+      Sprite Enemy 3_23: 1979043421
+      Sprite Enemy 3_11: -6364026
+      Sprite Enemy 3_3: 977118751
+      Sprite Enemy 3_13: -2003451317
+      Sprite Enemy 3_26: 1114541879
+      Sprite Enemy 3_28: 1967088169
+      Sprite Enemy 3_4: 715556032
+      Sprite Enemy 3_7: -1039763737
+      Sprite Enemy 3_29: 87684809
+      Sprite Enemy 3_21: -1836516211
+      Sprite Enemy 3_18: 1162679577
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

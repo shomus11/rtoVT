@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3988965405
+    locked: 0
+  - name: Second background
+    uniqueID: 2055489189
+    locked: 0
+  - name: Gambar
+    uniqueID: 2280823219
+    locked: 0
+  - name: Judul
+    uniqueID: 2439373379
+    locked: 0
+  - name: Text
+    uniqueID: 2394945515
+    locked: 0
+  - name: Button
+    uniqueID: 58758095
+    locked: 0
