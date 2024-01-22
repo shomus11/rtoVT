@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShootController : MonoBehaviour
@@ -11,10 +10,15 @@ public class ShootController : MonoBehaviour
     {
         while (true)
         {
-            GameObject projectile = ObjectPooler.Instance.GetPooledObj();
+            GameObject projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
             if (projectile != null)
             {
-                
+                ObjectPooler.sharedInstance.InitSpawnObject(
+                    ObjectPooler.sharedInstance.projectilePrefabs,
+                    ObjectPooler.sharedInstance.projectilePooledList,
+                    ObjectPooler.sharedInstance.projectileAmountToPool
+                    );
+
             }
             yield return null;
         }

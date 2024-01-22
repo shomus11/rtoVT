@@ -1,44 +1,60 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler Instance;
+    public static ObjectPooler sharedInstance;
 
-    private List<GameObject> PooledObjs = new List<GameObject>();
-    [SerializeField] private int totalPooled = 10;
-    [SerializeField] private GameObject pooledObj;
+    [Header("sfx Component")]
+    public List<GameObject> sfxPooledObject;
+    public GameObject sfxPrefabs;
+    public int sfxAmountToPool;
+    [Space(10)]
 
-    private void Awake() {
-        if (Instance == null)
+    [Header("projectile Component")]
+    public List<GameObject> projectilePooledList;
+    public GameObject projectilePrefabs;
+    public int projectileAmountToPool;
+
+    void Awake()
+    {
+        sharedInstance = this;
+    }
+
+    void Start()
+    {
+        sfxPooledObject = new List<GameObject>();
+        InitSpawnObject(sfxPrefabs, sfxPooledObject, sfxAmountToPool);
+    }
+
+    private void Update()
+    {
+
+    }
+
+    public void InitSpawnObject(GameObject prefabs, List<GameObject> list, int amount)
+    {
+        GameObject tmp;
+        for (int i = 0; i < sfxAmountToPool; i++)
         {
-            Instance = this;
+            tmp = Instantiate(prefabs, gameObject.transform);
+            tmp.SetActive(false);
+            list.Add(tmp);
         }
     }
 
-    private void Start() {
-        InitPool();
-    }
-
-    private void InitPool()
+    public GameObject GetPooledObject(List<GameObject> list)
     {
-        for (int i = 0; i < totalPooled; i++)
+        for (int i = 0; i < list.Count; i++)
         {
-            GameObject obj = Instantiate(pooledObj);
-            obj.transform.SetParent(gameObject.transform);
-            obj.SetActive(false);
-            PooledObjs.Add(obj);
-        }
-    }
-
-    public GameObject GetPooledObj()
-    {
-        for (int i = 0; i < PooledObjs.Count; i++)
-        {
-            if (!PooledObjs[i].activeInHierarchy)
-                return PooledObjs[i];
+            if (!list[i].activeInHierarchy)
+            {
+                return list[i];
+            }
         }
         return null;
     }
+
+
+
 }
