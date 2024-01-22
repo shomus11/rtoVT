@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
- 
+
 public class proto_movement : MonoBehaviour
 {
 
@@ -12,6 +12,7 @@ public class proto_movement : MonoBehaviour
     float hp;
     public PlayerData playerData;
     public TextMeshProUGUI debugTxt;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class proto_movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spd = playerData.moveSpeed;
         hp = playerData.healthPoint;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,12 +34,21 @@ public class proto_movement : MonoBehaviour
             debugTxt.text = "Kalah";
             Destroy(gameObject);
         }
+
+        PlayerAnimationUpdater();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.TryGetComponent<proto_enemyProjectile>(out proto_enemyProjectile enemy))
         {
             hp -= enemy.dmg;
         }
+    }
+
+    private void PlayerAnimationUpdater()
+    {
+        anim.SetFloat("MovementValueX", movement.x);
+        anim.SetFloat("MovementValueY", movement.y);
     }
 }

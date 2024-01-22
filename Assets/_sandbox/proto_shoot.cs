@@ -17,7 +17,7 @@ public class proto_shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
     }
 
     private IEnumerator Shooting()
@@ -30,7 +30,8 @@ public class proto_shoot : MonoBehaviour
             if (projectile != null)
             {
                 projectile.transform.position = transform.position;
-                angle = transform.localRotation * Vector2.up;
+                projectile.transform.rotation = transform.rotation;
+                angle = Quaternion.Euler(0, 0, transform.localPosition.z) * Vector2.up;
                 projectile.GetComponent<proto_projectile>().direction = angle.normalized;
                 projectile.SetActive(true);
             }

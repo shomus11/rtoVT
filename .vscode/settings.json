@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "rto_VT.sln"
+    "dotnet.defaultSolution": "rtoVT.sln"
 }
