@@ -1,23 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class proto_parallaxScroll : MonoBehaviour
-{ 
-    public RawImage Image;
-    public float x_limit;
-    public float y_limit;
+{
+    [SerializeField] private float parallaxSpeed = 0.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject[] parallaxLayers;
+
+    Vector3 endPos;
+    Vector3 startPos;
+    public Vector3 offside;
+    private void Start()
     {
+        //parallaxLayers = transform.gameObject.GetComponentsInChildren<SpriteRenderer>();
+        endPos = parallaxLayers[0].transform.position;
+        startPos = parallaxLayers[parallaxLayers.Length - 1].transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Image.uvRect = new Rect(Image.uvRect.position + new Vector2(x_limit, y_limit) *  Time.deltaTime, Image.uvRect.size);
-        
+        foreach (GameObject layer in parallaxLayers)
+        {
+            layer.transform.Translate(Vector3.down * parallaxSpeed);
+
+            if (layer.transform.position.y <= endPos.y)
+            {
+                layer.transform.position = startPos + offside;
+            }
+        }
     }
 }

@@ -24,7 +24,10 @@ public class ObjectPooler : MonoBehaviour
     void Start()
     {
         sfxPooledObject = new List<GameObject>();
+        projectilePooledList = new List<GameObject>();
         InitSpawnObject(sfxPrefabs, sfxPooledObject, sfxAmountToPool);
+        InitSpawnObject(projectilePrefabs, projectilePooledList, projectileAmountToPool);
+
     }
 
     private void Update()

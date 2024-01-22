@@ -18,7 +18,7 @@ public class ShootController : MonoBehaviour
                     ObjectPooler.sharedInstance.projectilePooledList,
                     ObjectPooler.sharedInstance.projectileAmountToPool
                     );
-
+                projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
             }
             yield return null;
         }

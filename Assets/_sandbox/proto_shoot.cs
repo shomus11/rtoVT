@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class proto_shoot : MonoBehaviour
@@ -7,6 +6,8 @@ public class proto_shoot : MonoBehaviour
     public GameObject projectileObj;
     public float fireRate;
     public Vector2 angle;
+    public float damageAmplified;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +25,23 @@ public class proto_shoot : MonoBehaviour
     {
         while (true)
         {
-            // Instantiate(projectileObj, transform.position, Quaternion.identity);
-
-            GameObject projectile = proto_objPool.Instance.GetPooledObj();
+            GameObject projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
+            if (projectile == null)
+            {
+                ObjectPooler.sharedInstance.InitSpawnObject(
+                    ObjectPooler.sharedInstance.projectilePrefabs,
+                    ObjectPooler.sharedInstance.projectilePooledList,
+                    ObjectPooler.sharedInstance.projectileAmountToPool
+                    );
+                projectile = proto_objPool.Instance.GetPooledObj();
+            }
             if (projectile != null)
             {
                 projectile.transform.position = transform.position;
-                projectile.transform.rotation = transform.rotation;
-                angle = Quaternion.Euler(0, 0, transform.localPosition.z) * Vector2.up;
+                angle = transform.localRotation * Vector2.up;
+                projectile.transform.rotation = Quaternion.EulerAngles(angle);
                 projectile.GetComponent<proto_projectile>().direction = angle.normalized;
+                projectile.GetComponent<proto_projectile>().dmgAmp = damageAmplified;
                 projectile.SetActive(true);
             }
 
