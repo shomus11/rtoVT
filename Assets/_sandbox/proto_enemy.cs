@@ -12,12 +12,14 @@ public class proto_enemy : MonoBehaviour
     private Vector2 endPos;
     private proto_enemyShot enemyShot;
     public float enemyHealthPoint = 3f;
+    private bool isCurrentlyAttacking = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyShot = GetComponent<proto_enemyShot>();
         startPos = transform.position;
+
     }
 
     // Update is called once per frame
@@ -27,14 +29,18 @@ public class proto_enemy : MonoBehaviour
 
         if (enemyHealthPoint < 0f)
         {
-            Destroy(gameObject);
+            // proto_enemySpawn.Instance.enemies.Remove(this);
+            gameObject.SetActive(false);
+
         }
 
         Vector2 direction = (currentPos - startPos).normalized;
-        if (!DOTween.IsTweening(transform))
+        bool shouldAttack = !DOTween.IsTweening(transform);
+
+        if (shouldAttack != isCurrentlyAttacking)
         {
-            direction = Vector2.zero;
-            return;
+            enemyShot.StartAttacking(shouldAttack);
+            isCurrentlyAttacking = shouldAttack;
         }
 
         // anim.SetFloat("moveX", direction.x);
@@ -46,6 +52,12 @@ public class proto_enemy : MonoBehaviour
     {
         UnityEngine.Debug.Log(animationName + " animation played");
         anim.Play(animationName);
+    }
+
+    public void PlayNPCAnimation(float value)
+    {
+        UnityEngine.Debug.Log(value + " animation played");
+        anim.SetFloat("moveX", value);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

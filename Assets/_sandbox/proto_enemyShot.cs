@@ -10,10 +10,22 @@ public class proto_enemyShot : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public void StartAttacking()
+    void Start()
     {
-        fireRate = 1f;
-        StartCoroutine(Shooting());
+
+    }
+
+    public void StartAttacking(bool isAttacking)
+    {
+        if (isAttacking)
+        {
+            fireRate = 1f;
+            StartCoroutine(Shooting());
+        }
+        else
+        {
+            StopCoroutine(Shooting());
+        }
     }
 
     // Update is called once per frame

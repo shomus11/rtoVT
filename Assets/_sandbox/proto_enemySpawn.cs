@@ -1,11 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class proto_enemySpawn : MonoBehaviour
 {
+    public static proto_enemySpawn Instance;
+
     public GameObject enemyPrefabs;
     public int maxEnemy = 30;
     public float totalEnemy;
@@ -28,6 +32,13 @@ public class proto_enemySpawn : MonoBehaviour
 
     private int count = 0;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +46,19 @@ public class proto_enemySpawn : MonoBehaviour
         InitNpcFixPosition();
         InitNPCStartPosition();
         InitNPC();
-        NPCPattern();
+        InvokeRepeating("MoveNPC", 5f, 6f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (AreAllEnemiesDisabled())
+        {
+            enemies.Clear();
+            StopAllCoroutines();
+            StartCoroutine(WaitTimeForSecond(4f));
+            InitNPC();
+        }
     }
 
     void InitNPC()
@@ -88,6 +105,7 @@ public class proto_enemySpawn : MonoBehaviour
             }
         }
     }
+
     void SpawnNPC()
     {
         enemies = new List<proto_enemy>();
@@ -98,56 +116,93 @@ public class proto_enemySpawn : MonoBehaviour
             enemies[i].transform.localPosition = enemiesStartPosition[i];
             // do move to fix location
         }
+        NPCPattern();
     }
+
+    bool AreAllEnemiesDisabled()
+    {
+        return enemies.All(enemy => !enemy.gameObject.activeSelf);
+    }
+
+    IEnumerator WaitTimeForSecond(float value)
+    {
+        yield return new WaitForSeconds(value);
+    }
+
     public void NPCPattern()
+    {
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                ;
+                if (i < enemies.Count / 2)
+                {
+                    StartCoroutine(SetNPCAnimation(i, "Enemy_3_Turn_Right"));
+                }
+                else
+                {
+                    StartCoroutine(SetNPCAnimation(i, "Enemy_3_Turn_Left"));
+                }
+            }
+        }
+
+
+    }
+
+    IEnumerator SetNPCAnimation(int value, string animationName)
+    {
+        Debug.Log("jalan animasi");
+        enemies[value].PlayNPCAnimation(animationName);
+        enemies[value].transform.DOLocalMove(enemiesfixPosition[value], 2f).From(enemiesStartPosition[value]);
+        yield return new WaitForSeconds(2f);
+        enemies[value].PlayNPCAnimation("Enemy_3_Idle");
+
+    }
+
+    IEnumerator WaitBeforeBackLeft(int i)
+    {
+        yield return new WaitForSeconds(2f);
+        enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesfixPosition[i] + new Vector3(5f, 0, 0));
+    }
+    IEnumerator WaitBeforeBackRight(int i)
+    {
+        yield return new WaitForSeconds(2f);
+        enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesfixPosition[i] + new Vector3(-5f, 0, 0));
+    }
+    void MoveNPC()
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            float totalAnimationDuration = 0;
-            Sequence sequence = DOTween.Sequence();
-
-
-            if (i < enemies.Count / 2)
+            if (enemies[i] == null)
             {
-                sequence.InsertCallback(totalAnimationDuration, () =>
-                {
-                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Left");
-                });
-
-                sequence.Insert(totalAnimationDuration, enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesStartPosition[i]));
-
-                totalAnimationDuration += 2f;
-                sequence.InsertCallback(totalAnimationDuration, () =>
-                {
-                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Idle");
-                });
-                // enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f)
-                //                 .From(enemiesStartPosition[i]).OnComplete(() =>
-                //                 {
-                //                     enemies[i].PlayNPCAnimation("Enemy_3_Idle");
-                //                 });
+                continue;
             }
-            else
+            if (i % 3 == 0 || i % 3 == 2)
             {
-                sequence.InsertCallback(totalAnimationDuration, () =>
-                {
-                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Right");
-                });
+                enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), 2f).From(enemiesfixPosition[i]);
+                Debug.Log("Enemy " + i + " move left");
 
-                sequence.Insert(totalAnimationDuration, enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesStartPosition[i]));
+                StartCoroutine(WaitBeforeBackRight(i));
 
-                totalAnimationDuration += 2f;
 
-                sequence.InsertCallback(totalAnimationDuration, () =>
-                {
-                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Idle");
-                });
-                // enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f)
-                //                 .From(enemiesStartPosition[i]).OnComplete(() =>
-                //                 {
-                //                     enemies[i].PlayNPCAnimation("Enemy_3_Idle");
-                //                 });
             }
+            if (i % 3 == 1)
+            {
+                enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(5f, 0, 0), 2f).From(enemiesfixPosition[i]);
+                Debug.Log("Enemy " + i + " move right");
+
+                StartCoroutine(WaitBeforeBackLeft(i));
+
+            }
+            // else if (i % 2 == 0 && i >= enemiesfixPosition.Count / 2)
+            // {
+            //     enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(5f, 0, 0), 2f).From(enemiesfixPosition[i]);
+            // }
+            // else if (i % 2 == 1 && i >= enemiesfixPosition.Count / 2)
+            // {
+            //     enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), 2f).From(enemiesfixPosition[i]);
+            // }
+
         }
     }
 

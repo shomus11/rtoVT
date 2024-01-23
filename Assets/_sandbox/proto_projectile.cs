@@ -20,8 +20,8 @@ public class proto_projectile : MonoBehaviour
     {
         transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
 
-        if (isPowered)
-            dmg = 10f + dmgAmp;
+        // if (isPowered)
+        //     dmg = 10f + dmgAmp;
 
         if (transform.position.y > 7f)
             this.gameObject.SetActive(false);
