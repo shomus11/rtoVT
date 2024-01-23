@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 0
-  powerUpsValue: 10
+  powerUpsValue: 0.3
   moveSpeed: 1.5
 --- !u!61 &706544148242839090
 BoxCollider2D:

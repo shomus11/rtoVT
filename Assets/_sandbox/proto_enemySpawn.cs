@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,12 +9,19 @@ public class proto_enemySpawn : MonoBehaviour
     public int maxEnemy = 30;
     public float totalEnemy;
     public List<WavePattern> row = new List<WavePattern>();
-    public Transform[ , ] spawnArea;
+    public Transform[,] spawnArea;
     public Transform baseSpawn;
-    public int rowEnemy = 3;
-    public int columEnemy = 10;
+    int rowEnemy = 3;
+    int columEnemy = 10;
 
-    public proto_enemy[] enemies;
+    [Header("Enemies List")]
+    public List<proto_enemy> enemies;
+    [Space(10)]
+
+    [Header("Enemies Position setup")]
+    [SerializeField] List<Vector3> enemiesfixPosition;
+    [SerializeField] List<Vector3> enemiesStartPosition;
+    [Space(10)]
 
     public TextMeshProUGUI debugTxt;
 
@@ -24,27 +30,80 @@ public class proto_enemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemies = FindObjectsOfType<proto_enemy>();
+        //setPosition list first -> setup npc coming from -> spawn npc and add to npc list ->  npc
+        InitNpcFixPosition();
+        InitNPCStartPosition();
+        InitNPC();
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void InitNPC()
+    {
+        SpawnNPC();
+    }
+    void InitNpcFixPosition()
+    {
+        enemiesfixPosition = new List<Vector3>();
         for (int i = 0; i < row.Count; i++)
         {
             for (int j = 0; j < row[i].columb.Length; j++)
             {
                 if (row[i].columb[j] == 1)
                 {
-                    GameObject enemy = Instantiate(enemyPrefabs, row[i].pos[j]);
-                    enemy.transform.localPosition = Vector2.zero;
+                    enemiesfixPosition.Add(row[i].pos[j].localPosition);
                 }
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void InitNPCStartPosition()
     {
-        
+        enemiesStartPosition = new List<Vector3>();
+        for (int i = 0; i < enemiesfixPosition.Count; i++)
+        {
+            if (i < (enemiesfixPosition.Count / 2))
+            {
+                enemiesStartPosition.Add(
+                  new Vector3(
+                      enemiesfixPosition[i].x - 10f,
+                      enemiesfixPosition[i].y,
+                      enemiesfixPosition[i].z)
+                  );
+            }
+            else
+            {
+                enemiesStartPosition.Add(
+                 new Vector3(
+                     enemiesfixPosition[i].x + 10f,
+                     enemiesfixPosition[i].y,
+                     enemiesfixPosition[i].z)
+                 );
+            }
+        }
     }
+    void SpawnNPC()
+    {
+        enemies = new List<proto_enemy>();
+        for (int i = 0; i < enemiesStartPosition.Count; i++)
+        {
+            proto_enemy enemy = Instantiate(enemyPrefabs, transform).GetComponent<proto_enemy>();
+            enemies.Add(enemy);
+            enemies[i].transform.localPosition = enemiesStartPosition[i];
+            // do move to fix location
+        }
+    }
+    public void NPCPattern()
+    {
+
+    }
+
 }
+
 
 [Serializable]
 public struct WavePattern

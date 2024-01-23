@@ -4900,9 +4900,9 @@ MonoBehaviour:
     - {fileID: 2017902715}
     - {fileID: 774625762}
   baseSpawn: {fileID: 0}
-  rowEnemy: 3
-  columEnemy: 10
   enemies: []
+  enemiesfixPosition: []
+  enemiesStartPosition: []
   debugTxt: {fileID: 12660530}
 --- !u!4 &1926991595
 Transform:
