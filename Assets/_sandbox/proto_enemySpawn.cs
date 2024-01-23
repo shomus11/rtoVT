@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ public class proto_enemySpawn : MonoBehaviour
         InitNpcFixPosition();
         InitNPCStartPosition();
         InitNPC();
+        NPCPattern();
     }
 
     // Update is called once per frame
@@ -99,8 +101,56 @@ public class proto_enemySpawn : MonoBehaviour
     }
     public void NPCPattern()
     {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            float totalAnimationDuration = 0;
+            Sequence sequence = DOTween.Sequence();
 
+
+            if (i < enemies.Count / 2)
+            {
+                sequence.InsertCallback(totalAnimationDuration, () =>
+                {
+                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Left");
+                });
+
+                sequence.Insert(totalAnimationDuration, enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesStartPosition[i]));
+
+                totalAnimationDuration += 2f;
+                sequence.InsertCallback(totalAnimationDuration, () =>
+                {
+                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Idle");
+                });
+                // enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f)
+                //                 .From(enemiesStartPosition[i]).OnComplete(() =>
+                //                 {
+                //                     enemies[i].PlayNPCAnimation("Enemy_3_Idle");
+                //                 });
+            }
+            else
+            {
+                sequence.InsertCallback(totalAnimationDuration, () =>
+                {
+                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Right");
+                });
+
+                sequence.Insert(totalAnimationDuration, enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesStartPosition[i]));
+
+                totalAnimationDuration += 2f;
+
+                sequence.InsertCallback(totalAnimationDuration, () =>
+                {
+                    enemies[i].PlayNPCAnimation("Enemy_3_Turn_Idle");
+                });
+                // enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f)
+                //                 .From(enemiesStartPosition[i]).OnComplete(() =>
+                //                 {
+                //                     enemies[i].PlayNPCAnimation("Enemy_3_Idle");
+                //                 });
+            }
+        }
     }
+
 
 }
 

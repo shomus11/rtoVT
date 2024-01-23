@@ -8,7 +8,9 @@ public class proto_enemyShot : MonoBehaviour
     public float fireRate;
     public Vector2 angle;
     // Start is called before the first frame update
-    void Start()
+
+
+    public void StartAttacking()
     {
         fireRate = 1f;
         StartCoroutine(Shooting());
@@ -17,7 +19,7 @@ public class proto_enemyShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
     }
 
     private IEnumerator Shooting()
