@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class proto_PowerUp : MonoBehaviour
+public class PowerUp_Behavior : MonoBehaviour
 {
     public PowerUp powerUpType;
     public float powerUpsValue;
@@ -20,7 +20,7 @@ public class proto_PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<proto_movement>(out proto_movement player))
+        if (other.TryGetComponent<PlayerController>(out PlayerController player))
         {
             player.UpgradePowers(powerUpType, powerUpsValue);
             this.gameObject.SetActive(false);

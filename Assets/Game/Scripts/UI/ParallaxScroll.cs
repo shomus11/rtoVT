@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class proto_parallaxScroll : MonoBehaviour
+public class ParallaxScroll : MonoBehaviour
 {
     [SerializeField] private float parallaxSpeed = 0.5f;
 

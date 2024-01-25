@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class proto_projectile : MonoBehaviour
+public class ProjectileBehavior : MonoBehaviour
 {
 
 
@@ -30,7 +30,7 @@ public class proto_projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<proto_enemy>(out proto_enemy enemy))
+        if (other.TryGetComponent<EnemyBehavior>(out EnemyBehavior enemy))
         {
             this.gameObject.SetActive(false);
         }

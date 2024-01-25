@@ -1,14 +1,14 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class proto_enemySpawn : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
-    public static proto_enemySpawn Instance;
+    public static StageManager Instance;
 
     public GameObject enemyPrefabs;
     public int maxEnemy = 30;
@@ -20,7 +20,7 @@ public class proto_enemySpawn : MonoBehaviour
     int columEnemy = 10;
 
     [Header("Enemies List")]
-    public List<proto_enemy> enemies;
+    public List<EnemyBehavior> enemies;
     [Space(10)]
 
     [Header("Enemies Position setup")]
@@ -42,7 +42,6 @@ public class proto_enemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //setPosition list first -> setup npc coming from -> spawn npc and add to npc list ->  npc
         InitNpcFixPosition();
         InitNPCStartPosition();
         InitNPC();
@@ -108,13 +107,12 @@ public class proto_enemySpawn : MonoBehaviour
 
     void SpawnNPC()
     {
-        enemies = new List<proto_enemy>();
+        enemies = new List<EnemyBehavior>();
         for (int i = 0; i < enemiesStartPosition.Count; i++)
         {
-            proto_enemy enemy = Instantiate(enemyPrefabs, transform).GetComponent<proto_enemy>();
+            EnemyBehavior enemy = Instantiate(enemyPrefabs, transform).GetComponent<EnemyBehavior>();
             enemies.Add(enemy);
             enemies[i].transform.localPosition = enemiesStartPosition[i];
-            // do move to fix location
         }
         NPCPattern();
     }
@@ -180,29 +178,14 @@ public class proto_enemySpawn : MonoBehaviour
             if (i % 3 == 0 || i % 3 == 2)
             {
                 enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), 2f).From(enemiesfixPosition[i]);
-                Debug.Log("Enemy " + i + " move left");
-
                 StartCoroutine(WaitBeforeBackRight(i));
-
-
             }
             if (i % 3 == 1)
             {
                 enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(5f, 0, 0), 2f).From(enemiesfixPosition[i]);
-                Debug.Log("Enemy " + i + " move right");
-
                 StartCoroutine(WaitBeforeBackLeft(i));
 
             }
-            // else if (i % 2 == 0 && i >= enemiesfixPosition.Count / 2)
-            // {
-            //     enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(5f, 0, 0), 2f).From(enemiesfixPosition[i]);
-            // }
-            // else if (i % 2 == 1 && i >= enemiesfixPosition.Count / 2)
-            // {
-            //     enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), 2f).From(enemiesfixPosition[i]);
-            // }
-
         }
     }
 

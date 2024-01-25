@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 627a31c049c717b4e84370e5ef170077, type: 2}
-  debugTxt: {fileID: 12660530}
+  debugTxt: {fileID: 0}
   gunList: []
 --- !u!212 &972301966
 SpriteRenderer:
@@ -5677,5 +5677,9 @@ PrefabInstance:
       propertyPath: debugTxt
       value: 
       objectReference: {fileID: 12660530}
+    - target: {fileID: 8391116141342672624, guid: 7ab7c8fdc2316e746a964775755d67ed, type: 3}
+      propertyPath: healthPoint
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ab7c8fdc2316e746a964775755d67ed, type: 3}

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class proto_enemyProjectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
-   public float moveSpeed;
+    public float moveSpeed;
     public float dmg;
     public Vector2 direction;
     // Start is called before the first frame update 
@@ -17,13 +15,14 @@ public class proto_enemyProjectile : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * moveSpeed * Time.deltaTime);
-    
+
         if (transform.position.y < -7f)
             Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.TryGetComponent<proto_movement>(out proto_movement enemy))
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<PlayerController>(out PlayerController enemy))
         {
             Destroy(gameObject);
         }

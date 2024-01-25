@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class proto_shoot : MonoBehaviour
+public class PlayerShot_Controller : MonoBehaviour
 {
     public GameObject projectileObj;
     public float fireRate;
@@ -33,7 +33,7 @@ public class proto_shoot : MonoBehaviour
                     ObjectPooler.sharedInstance.projectilePooledList,
                     ObjectPooler.sharedInstance.projectileAmountToPool
                     );
-                projectile = proto_objPool.Instance.GetPooledObj();
+                projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
             }
             if (projectile != null)
             {

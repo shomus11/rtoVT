@@ -11,7 +11,7 @@ public enum PowerUp
     moreBullet
 }
 
-public class proto_movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     Rigidbody2D rb;
@@ -22,12 +22,12 @@ public class proto_movement : MonoBehaviour
     public TextMeshProUGUI debugTxt;
     private Animator anim;
 
-    public List<proto_shoot> gunList;
+    public List<PlayerShot_Controller> gunList;
 
     // Start is called before the first frame update
     void Start()
     {
-        proto_shoot[] proto_Shoots = gameObject.GetComponentsInChildren<proto_shoot>();
+        PlayerShot_Controller[] proto_Shoots = gameObject.GetComponentsInChildren<PlayerShot_Controller>();
         gunList = proto_Shoots.ToList();
 
 
@@ -92,7 +92,7 @@ public class proto_movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<proto_enemyProjectile>(out proto_enemyProjectile enemy))
+        if (other.TryGetComponent<EnemyProjectile>(out EnemyProjectile enemy))
         {
             hp -= enemy.dmg;
         }
