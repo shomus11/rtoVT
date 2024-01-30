@@ -14,17 +14,20 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        if (GameManager.instance.gameState == GameStates.Gameplay)
+        {
+            transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-        if (transform.position.y < -7f)
-            Destroy(gameObject);
+            if (transform.position.y < -7f)
+                gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent<PlayerController>(out PlayerController enemy))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

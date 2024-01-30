@@ -39,7 +39,8 @@ public class SoundManager : MonoBehaviour
                     ObjectPooler.sharedInstance.InitSpawnObject(
                         ObjectPooler.sharedInstance.sfxPrefabs,
                         ObjectPooler.sharedInstance.sfxPooledObject,
-                        ObjectPooler.sharedInstance.sfxAmountToPool
+                        ObjectPooler.sharedInstance.sfxAmountToPool,
+                        ObjectPooler.sharedInstance.sfxContainer
                         );
                     sfxObject = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.sfxPooledObject);
                 }

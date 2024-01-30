@@ -9,24 +9,34 @@ public class ObjectPooler : MonoBehaviour
     public List<GameObject> sfxPooledObject;
     public GameObject sfxPrefabs;
     public int sfxAmountToPool;
+    public Transform sfxContainer;
     [Space(10)]
 
-    [Header("projectile Component")]
+    [Header("Player Projectile Component")]
     public List<GameObject> projectilePooledList;
     public GameObject projectilePrefabs;
     public int projectileAmountToPool;
+    public Transform projectTileContainer;
+
+    [Header("Enemy projectile Component")]
+    public List<GameObject> EnemyProjectilePooledList;
+    public GameObject EnemyProjectilePrefabs;
+    public int EnemyProjectileAmountToPool;
+    public Transform EnemyProjectileContainer;
 
     void Awake()
     {
         sharedInstance = this;
+        sfxPooledObject = new List<GameObject>();
+        projectilePooledList = new List<GameObject>();
+        EnemyProjectilePooledList = new List<GameObject>();
+        InitSpawnObject(sfxPrefabs, sfxPooledObject, sfxAmountToPool, sfxContainer);
+        InitSpawnObject(EnemyProjectilePrefabs, EnemyProjectilePooledList, EnemyProjectileAmountToPool, EnemyProjectileContainer);
+        InitSpawnObject(projectilePrefabs, projectilePooledList, projectileAmountToPool, projectTileContainer);
     }
 
     void Start()
     {
-        sfxPooledObject = new List<GameObject>();
-        projectilePooledList = new List<GameObject>();
-        InitSpawnObject(sfxPrefabs, sfxPooledObject, sfxAmountToPool);
-        InitSpawnObject(projectilePrefabs, projectilePooledList, projectileAmountToPool);
 
     }
 
@@ -35,12 +45,12 @@ public class ObjectPooler : MonoBehaviour
 
     }
 
-    public void InitSpawnObject(GameObject prefabs, List<GameObject> list, int amount)
+    public void InitSpawnObject(GameObject prefabs, List<GameObject> list, int amount, Transform container)
     {
         GameObject tmp;
         for (int i = 0; i < sfxAmountToPool; i++)
         {
-            tmp = Instantiate(prefabs, gameObject.transform);
+            tmp = Instantiate(prefabs, container);
             tmp.SetActive(false);
             list.Add(tmp);
         }

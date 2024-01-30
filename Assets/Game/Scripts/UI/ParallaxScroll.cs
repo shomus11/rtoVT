@@ -18,13 +18,16 @@ public class ParallaxScroll : MonoBehaviour
 
     void Update()
     {
-        foreach (GameObject layer in parallaxLayers)
+        if (GameManager.instance.gameState == GameStates.Gameplay)
         {
-            layer.transform.Translate(Vector3.down * parallaxSpeed);
-
-            if (layer.transform.position.y <= endPos.y)
+            foreach (GameObject layer in parallaxLayers)
             {
-                layer.transform.position = startPos + offside;
+                layer.transform.Translate(Vector3.down * parallaxSpeed);
+
+                if (layer.transform.position.y <= endPos.y)
+                {
+                    layer.transform.position = startPos + offside;
+                }
             }
         }
     }

@@ -40,16 +40,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rb.velocity = movement.normalized * spd;
-
-        if (hp < 0f)
+        if (GameManager.instance.gameState == GameStates.Gameplay)
         {
-            debugTxt.text = "Kalah";
-            Destroy(gameObject);
-        }
+            movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            rb.velocity = movement.normalized * spd;
 
-        PlayerAnimationUpdater();
+            if (hp < 0f)
+            {
+                debugTxt.text = "Kalah";
+                Destroy(gameObject);
+            }
+
+            PlayerAnimationUpdater();
+        }
     }
 
 

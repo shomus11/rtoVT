@@ -28,6 +28,18 @@ public class StageManager : MonoBehaviour
     [SerializeField] List<Vector3> enemiesStartPosition;
     [Space(10)]
 
+    [Header("Enemies movement Component")]
+    [SerializeField] float movementTimerMin = 3f;
+    [SerializeField] float movementTimerMax = 5f;
+
+    [SerializeField] float movementTimer = 5f;
+    [SerializeField] float movementCooldown;
+    public bool isCooldown = false;
+    public bool canMove = false;
+    public bool ableToMove = false;
+
+    [Space(10)]
+
     public TextMeshProUGUI debugTxt;
 
     private int count = 0;
@@ -38,31 +50,35 @@ public class StageManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
     }
     // Start is called before the first frame update
     void Start()
     {
-        InitNpcFixPosition();
-        InitNPCStartPosition();
-        InitNPC();
-        InvokeRepeating("MoveNPC", 5f, 6f);
+        movementTimer = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
+        movementCooldown = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
+        //movementTimerTemp = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (AreAllEnemiesDisabled())
-        {
-            enemies.Clear();
-            StopAllCoroutines();
-            StartCoroutine(WaitTimeForSecond(4f));
-            InitNPC();
-        }
+        //if (AreAllEnemiesDisabled())
+        //{
+        //    enemies.Clear();
+        //    StopAllCoroutines();
+        //    StartCoroutine(WaitTimeForSecond(4f));
+        //    InitNPC();
+        //}
+        MoveNPC();
     }
 
-    void InitNPC()
+    public void InitNPC()
     {
+        InitNpcFixPosition();
+        InitNPCStartPosition();
         SpawnNPC();
+        //InvokeRepeating("MoveNPC", 5f, 6f);
     }
     void InitNpcFixPosition()
     {
@@ -149,25 +165,53 @@ public class StageManager : MonoBehaviour
 
     IEnumerator SetNPCAnimation(int value, string animationName)
     {
-        Debug.Log("jalan animasi");
         enemies[value].PlayNPCAnimation(animationName);
         enemies[value].transform.DOLocalMove(enemiesfixPosition[value], 2f).From(enemiesStartPosition[value]);
         yield return new WaitForSeconds(2f);
         enemies[value].PlayNPCAnimation("Enemy_3_Idle");
-
+        ableToMove = true;
     }
 
-    IEnumerator WaitBeforeBackLeft(int i)
-    {
-        yield return new WaitForSeconds(2f);
-        enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesfixPosition[i] + new Vector3(5f, 0, 0));
-    }
-    IEnumerator WaitBeforeBackRight(int i)
-    {
-        yield return new WaitForSeconds(2f);
-        enemies[i].transform.DOLocalMove(enemiesfixPosition[i], 2f).From(enemiesfixPosition[i] + new Vector3(-5f, 0, 0));
-    }
     void MoveNPC()
+    {
+        if (GameManager.instance.gameState == GameStates.Pause)
+        {
+            return;
+        }
+        if (GameManager.instance.gameState == GameStates.Gameplay)
+        {
+            if (ableToMove)
+            {
+                if (!isCooldown)
+                {
+                    movementTimer -= Time.deltaTime;
+                    if (movementTimer <= 0)
+                    {
+                        canMove = true;
+                        isCooldown = true;
+                    }
+                }
+
+                if (isCooldown)
+                {
+                    movementCooldown -= Time.deltaTime;
+                    if (movementCooldown <= 0)
+                    {
+                        isCooldown = false;
+                        movementTimer = UnityEngine.Random.Range(movementTimerMin, movementTimerMax); ;
+                        movementCooldown = UnityEngine.Random.Range(movementTimerMin, movementTimerMax); ;
+                    }
+                }
+
+                if (canMove)
+                {
+                    SetNPCToMove();
+                }
+            }
+        }
+    }
+
+    void SetNPCToMove()
     {
         for (int i = 0; i < enemies.Count; i++)
         {
@@ -177,16 +221,16 @@ public class StageManager : MonoBehaviour
             }
             if (i % 3 == 0 || i % 3 == 2)
             {
-                enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), 2f).From(enemiesfixPosition[i]);
-                StartCoroutine(WaitBeforeBackRight(i));
+                enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), enemiesfixPosition[i], "Enemy_3_Turn_Left", "Enemy_3_Turn_Right", "Enemy_3_Idle");
+                //StartCoroutine(WaitBeforeBackRight(i));
             }
             if (i % 3 == 1)
             {
-                enemies[i].transform.DOLocalMove(enemiesfixPosition[i] + new Vector3(5f, 0, 0), 2f).From(enemiesfixPosition[i]);
-                StartCoroutine(WaitBeforeBackLeft(i));
-
+                enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(5f, 0, 0), enemiesfixPosition[i], "Enemy_3_Turn_Right", "Enemy_3_Turn_Left", "Enemy_3_Idle");
+                //StartCoroutine(WaitBeforeBackLeft(i));
             }
         }
+        canMove = false;
     }
 
 

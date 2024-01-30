@@ -18,14 +18,17 @@ public class ProjectileBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
+        if (GameManager.instance.gameState == GameStates.Gameplay)
+        {
+            transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
 
-        // if (isPowered)
-        //     dmg = 10f + dmgAmp;
+            // if (isPowered)
+            //     dmg = 10f + dmgAmp;
 
-        if (transform.position.y > 7f)
-            this.gameObject.SetActive(false);
-        // Destroy(gameObject);
+            if (transform.position.y > 7f)
+                this.gameObject.SetActive(false);
+            // Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -25,26 +25,29 @@ public class PlayerShot_Controller : MonoBehaviour
     {
         while (true)
         {
-            GameObject projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
-            if (projectile == null)
+            if (GameManager.instance.gameState == GameStates.Gameplay)
             {
-                ObjectPooler.sharedInstance.InitSpawnObject(
-                    ObjectPooler.sharedInstance.projectilePrefabs,
-                    ObjectPooler.sharedInstance.projectilePooledList,
-                    ObjectPooler.sharedInstance.projectileAmountToPool
-                    );
-                projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
+                GameObject projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
+                if (projectile == null)
+                {
+                    ObjectPooler.sharedInstance.InitSpawnObject(
+                        ObjectPooler.sharedInstance.projectilePrefabs,
+                        ObjectPooler.sharedInstance.projectilePooledList,
+                        ObjectPooler.sharedInstance.projectileAmountToPool,
+                        ObjectPooler.sharedInstance.projectTileContainer
+                        );
+                    projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.projectilePooledList);
+                }
+                if (projectile != null)
+                {
+                    projectile.transform.position = transform.position;
+                    angle = transform.localRotation * Vector2.up;
+                    projectile.transform.rotation = Quaternion.EulerAngles(angle);
+                    projectile.GetComponent<ProjectileBehavior>().direction = angle.normalized;
+                    projectile.GetComponent<ProjectileBehavior>().dmgAmp = damageAmplified;
+                    projectile.SetActive(true);
+                }
             }
-            if (projectile != null)
-            {
-                projectile.transform.position = transform.position;
-                angle = transform.localRotation * Vector2.up;
-                projectile.transform.rotation = Quaternion.EulerAngles(angle);
-                projectile.GetComponent<proto_projectile>().direction = angle.normalized;
-                projectile.GetComponent<proto_projectile>().dmgAmp = damageAmplified;
-                projectile.SetActive(true);
-            }
-
             yield return new WaitForSeconds(fireRate);
         }
     }

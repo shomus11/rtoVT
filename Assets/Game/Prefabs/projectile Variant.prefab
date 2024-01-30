@@ -12,6 +12,10 @@ PrefabInstance:
       value: projectile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8390568280145504708, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
+      propertyPath: m_FlipY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390568280145504708, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
       propertyPath: m_Color.b
       value: 0.43712488
       objectReference: {fileID: 0}
@@ -69,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8716680971363142523, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8716680971363142523, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9058124317086230830, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}

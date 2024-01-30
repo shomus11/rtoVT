@@ -3,17 +3,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+[System.Serializable]
+public enum GameStates
 {
-    public static UIManager instance;
-    [System.Serializable]
-    public enum GameStates
-    {
-        MainMenu,
-        Gameplay,
-        Victory,
-        Defeat
-    }
+    MainMenu,
+    Gameplay,
+    Pause,
+    Resumed,
+    Victory,
+    Defeat
+}
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
 
     [Header("UI Attribute")]
     public RectTransform mainMenuUIContainer;
@@ -134,6 +137,13 @@ public class UIManager : MonoBehaviour
     public void OpenUI(RectTransform target, float durationMultipliyed = 1)
     {
         if (target == pauseUIContainer)
+        {
+            DOTween.PauseAll();
+            gameState = GameStates.Pause;
+        }
+
+
+        if (target == pauseUIContainer)
             pauseOpened = true;
 
         float totalAnimationDuration = 0;
@@ -148,6 +158,11 @@ public class UIManager : MonoBehaviour
 
     public void CloseUI(RectTransform target, float durationMultipliyed = 1)
     {
+        if (target == pauseUIContainer)
+        {
+            DOTween.PlayAll();
+            gameState = GameStates.Gameplay;
+        }
         float totalAnimationDuration = 0;
         Sequence sequence = DOTween.Sequence();
         sequence.Insert(totalAnimationDuration, target.DOScale(Vector3.zero, baseAnimationDuration * durationMultipliyed).From(Vector3.one).SetEase(Ease.OutBack)).OnComplete(() =>
@@ -217,6 +232,7 @@ public class UIManager : MonoBehaviour
                     CloseUI(endGameUIContainer, 0);
                     //testing sound changed
                     SoundManager.instance.SwitchOrPlayBGM("gameplay_sound");
+                    StageManager.Instance.InitNPC();
                 }
                 else if (sceneName == "Defeat")
                 {

@@ -15,7 +15,10 @@ public class PowerUp_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        if (GameManager.instance.gameState == GameStates.Gameplay)
+        {
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
