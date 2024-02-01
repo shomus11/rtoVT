@@ -10,6 +10,8 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
+    public StageData stageDatas;
+
     public GameObject enemyPrefabs;
     public int maxEnemy = 30;
     public float totalEnemy;
@@ -151,11 +153,11 @@ public class StageManager : MonoBehaviour
                 ;
                 if (i < enemies.Count / 2)
                 {
-                    StartCoroutine(SetNPCAnimation(i, "Enemy_3_Turn_Right"));
+                    StartCoroutine(SetNPCAnimation(i, "EnemyTurnRight"));
                 }
                 else
                 {
-                    StartCoroutine(SetNPCAnimation(i, "Enemy_3_Turn_Left"));
+                    StartCoroutine(SetNPCAnimation(i, "EnemyTurnLeft"));
                 }
             }
         }
@@ -168,7 +170,7 @@ public class StageManager : MonoBehaviour
         enemies[value].PlayNPCAnimation(animationName);
         enemies[value].transform.DOLocalMove(enemiesfixPosition[value], 2f).From(enemiesStartPosition[value]);
         yield return new WaitForSeconds(2f);
-        enemies[value].PlayNPCAnimation("Enemy_3_Idle");
+        enemies[value].PlayNPCAnimation("EnemyIdle");
         ableToMove = true;
     }
 
@@ -221,12 +223,12 @@ public class StageManager : MonoBehaviour
             }
             if (i % 3 == 0 || i % 3 == 2)
             {
-                enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), enemiesfixPosition[i], "Enemy_3_Turn_Left", "Enemy_3_Turn_Right", "Enemy_3_Idle");
+                enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), enemiesfixPosition[i], "EnemyTurnLeft", "EnemyTurnRight", "EnemyIdle");
                 //StartCoroutine(WaitBeforeBackRight(i));
             }
             if (i % 3 == 1)
             {
-                enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(5f, 0, 0), enemiesfixPosition[i], "Enemy_3_Turn_Right", "Enemy_3_Turn_Left", "Enemy_3_Idle");
+                enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(5f, 0, 0), enemiesfixPosition[i], "EnemyTurnRight", "EnemyTurnLeft", "EnemyIdle");
                 //StartCoroutine(WaitBeforeBackLeft(i));
             }
         }
