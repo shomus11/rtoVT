@@ -10,7 +10,11 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
+    [Header("Stage Data")]
     public StageData stageDatas;
+    [SerializeField] int currentStage = -1;
+    bool switchStage = false;
+    bool checkNPC = false;
 
     public GameObject enemyPrefabs;
     public int maxEnemy = 30;
@@ -59,28 +63,51 @@ public class StageManager : MonoBehaviour
     {
         movementTimer = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
         movementCooldown = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
+        InitNpcFixPosition();
+        InitNPCStartPosition();
         //movementTimerTemp = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (AreAllEnemiesDisabled())
-        //{
-        //    enemies.Clear();
-        //    StopAllCoroutines();
-        //    StartCoroutine(WaitTimeForSecond(4f));
-        //    InitNPC();
-        //}
+        if (checkNPC)
+            if (AreAllEnemiesDisabled())
+            {
+                switchStage = true;
+                if (switchStage)
+                {
+                    InitNPC();
+                    switchStage = false;
+                }
+                //    enemies.Clear();
+                //    StopAllCoroutines();
+                //    StartCoroutine(WaitTimeForSecond(4f));
+                //    InitNPC();
+            }
         MoveNPC();
     }
 
     public void InitNPC()
     {
-        InitNpcFixPosition();
-        InitNPCStartPosition();
-        SpawnNPC();
+
+        InitNPCData();
+        StartCoroutine(InitiatingSpawnNPC(stageDatas.stageSetups[currentStage].SpawnDelay));
         //InvokeRepeating("MoveNPC", 5f, 6f);
+    }
+
+    IEnumerator InitiatingSpawnNPC(float delay)
+    {
+        checkNPC = false;
+        yield return new WaitForSeconds(delay);
+        SpawnNPC();
+        checkNPC = true;
+    }
+
+    public void InitNPCData()
+    {
+        currentStage++;
+        enemyPrefabs = stageDatas.stageSetups[currentStage].enemyPrefabs;
     }
     void InitNpcFixPosition()
     {
@@ -167,10 +194,17 @@ public class StageManager : MonoBehaviour
 
     IEnumerator SetNPCAnimation(int value, string animationName)
     {
-        enemies[value].PlayNPCAnimation(animationName);
-        enemies[value].transform.DOLocalMove(enemiesfixPosition[value], 2f).From(enemiesStartPosition[value]);
+        if (enemies[value].isActiveAndEnabled)
+            enemies[value].PlayNPCAnimation(animationName);
+
+        if (enemies[value].isActiveAndEnabled)
+            enemies[value].transform.DOLocalMove(enemiesfixPosition[value], 2f).From(enemiesStartPosition[value]);
+
         yield return new WaitForSeconds(2f);
-        enemies[value].PlayNPCAnimation("EnemyIdle");
+
+        if (enemies[value].isActiveAndEnabled)
+            enemies[value].PlayNPCAnimation("EnemyIdle");
+
         ableToMove = true;
     }
 
@@ -224,12 +258,10 @@ public class StageManager : MonoBehaviour
             if (i % 3 == 0 || i % 3 == 2)
             {
                 enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(-5f, 0, 0), enemiesfixPosition[i], "EnemyTurnLeft", "EnemyTurnRight", "EnemyIdle");
-                //StartCoroutine(WaitBeforeBackRight(i));
             }
             if (i % 3 == 1)
             {
                 enemies[i].MoveNPC(enemiesfixPosition[i] + new Vector3(5f, 0, 0), enemiesfixPosition[i], "EnemyTurnRight", "EnemyTurnLeft", "EnemyIdle");
-                //StartCoroutine(WaitBeforeBackLeft(i));
             }
         }
         canMove = false;

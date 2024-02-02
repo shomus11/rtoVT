@@ -47,17 +47,20 @@ public class EnemyBehavior : MonoBehaviour
 
     public void MoveNPC(Vector3 startPos, Vector3 endPos, string animation1, string animation2, string animation3)
     {
-        Debug.Log("Moved");
-        npcSequence = DOTween.Sequence();
-        float animationDuration = 0.25f;
-        float totalAnimationDuration = 0;
-        npcSequence.Insert(totalAnimationDuration, transform.DOLocalMove(startPos, animationDuration * 8).From(endPos));
-        npcSequence.InsertCallback(totalAnimationDuration, () => PlayNPCAnimation(animation1));
-        totalAnimationDuration += animationDuration * 8;
-        npcSequence.Insert(totalAnimationDuration, transform.DOLocalMove(endPos, animationDuration * 8).From(startPos));
-        npcSequence.InsertCallback(totalAnimationDuration, () => PlayNPCAnimation(animation2));
-        totalAnimationDuration += animationDuration * 8;
-        npcSequence.InsertCallback(totalAnimationDuration, () => PlayNPCAnimation(animation3));
+
+        if (gameObject.activeSelf)
+        {
+            npcSequence = DOTween.Sequence();
+            float animationDuration = 0.25f;
+            float totalAnimationDuration = 0;
+            npcSequence.Insert(totalAnimationDuration, transform.DOLocalMove(startPos, animationDuration * 8).From(endPos));
+            npcSequence.InsertCallback(totalAnimationDuration, () => PlayNPCAnimation(animation1));
+            totalAnimationDuration += animationDuration * 8;
+            npcSequence.Insert(totalAnimationDuration, transform.DOLocalMove(endPos, animationDuration * 8).From(startPos));
+            npcSequence.InsertCallback(totalAnimationDuration, () => PlayNPCAnimation(animation2));
+            totalAnimationDuration += animationDuration * 8;
+            npcSequence.InsertCallback(totalAnimationDuration, () => PlayNPCAnimation(animation3));
+        }
     }
 
     public void Paused()

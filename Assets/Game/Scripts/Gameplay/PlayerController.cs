@@ -47,7 +47,9 @@ public class PlayerController : MonoBehaviour
 
             if (hp < 0f)
             {
+                GameManager.instance.SwitchGameStates(GameStates.Defeat);
                 debugTxt.text = "Kalah";
+                GameManager.instance.FadeOut("Defeat");
                 Destroy(gameObject);
             }
 

@@ -181,6 +181,11 @@ public class GameManager : MonoBehaviour
         FadeOut(true);
     }
 
+    public void SwitchGameStates(GameStates states)
+    {
+        gameState = states;
+    }
+
 
     public void FadeIn()
     {
@@ -246,7 +251,7 @@ public class GameManager : MonoBehaviour
                 {
                     defeatTittle.gameObject.SetActive(false);
                     victoryTittle.gameObject.SetActive(true);
-                    gameState = GameStates.Defeat;
+                    gameState = GameStates.Victory;
                     CloseUI(pauseUIContainer, 0);
                     OpenUI(endGameUIContainer, 1);
                 }

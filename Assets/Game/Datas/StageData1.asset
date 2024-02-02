@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: StageData1
   m_EditorClassIdentifier: 
   stageSetups:
-  - SpawnDelay: 0
+  - SpawnDelay: 1
+    enemyPrefabs: {fileID: 7715005328446604745, guid: 777a9f09d5283fb43bb176818da796ad, type: 3}
+    pattern: 0
+  - SpawnDelay: 2
+    enemyPrefabs: {fileID: 7715005328446604745, guid: 777a9f09d5283fb43bb176818da796ad, type: 3}
+    pattern: 1
+  - SpawnDelay: 2
     enemyPrefabs: {fileID: 7715005328446604745, guid: 400450d9921e4f04d8602e2ea5a30027, type: 3}
-    pattern: 0
-  - SpawnDelay: 5
-    enemyPrefabs: {fileID: 0}
-    pattern: 0
-  - SpawnDelay: 5
-    enemyPrefabs: {fileID: 0}
-    pattern: 0
-  - SpawnDelay: 5
-    enemyPrefabs: {fileID: 0}
-    pattern: 0
+    pattern: 1
+  - SpawnDelay: 2
+    enemyPrefabs: {fileID: 7715005328446604745, guid: 5087ed7d60b0af9449d320badecaf53f, type: 3}
+    pattern: 2

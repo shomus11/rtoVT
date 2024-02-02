@@ -17,6 +17,7 @@ public struct StageSetup
     public EnemyMovementPattern pattern;
 }
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "StageData", menuName = "SO/StageData")]
 public class StageData : ScriptableObject
 {
