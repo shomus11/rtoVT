@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1953141012, guid: 25621dc45f996474593a62f80b4b899e, type: 3}
+      propertyPath: fireRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4688694906432825608, guid: 25621dc45f996474593a62f80b4b899e, type: 3}
       propertyPath: m_FlipY
       value: 1

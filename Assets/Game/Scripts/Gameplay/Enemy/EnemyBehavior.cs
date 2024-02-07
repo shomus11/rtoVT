@@ -32,8 +32,8 @@ public class EnemyBehavior : MonoBehaviour
             {
                 // proto_enemySpawn.Instance.enemies.Remove(this);
                 GameManager.instance.AddKillAndScore(scoreMultiplier);
-                gameObject.SetActive(false);
-
+                StageManager.Instance.DefeatEnemy(this);
+                
             }
 
             Vector2 direction = (currentPos - startPos).normalized;

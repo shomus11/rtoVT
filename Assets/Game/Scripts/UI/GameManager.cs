@@ -239,7 +239,11 @@ public class GameManager : MonoBehaviour
                     //testing sound changed
                     ResetScore();
                     SoundManager.instance.SwitchOrPlayBGM("gameplay_sound");
+                    StageManager.Instance.CurrentStage = -1;
                     StageManager.Instance.InitNPC();
+                    PlayerController.instance.gameObject.SetActive(true);
+                    PlayerController.instance.InitPlayer();
+
                     //SceneManager.LoadScene(sceneName);
                 }
                 else if (sceneName == "Defeat")
@@ -247,7 +251,7 @@ public class GameManager : MonoBehaviour
                     defeatTittle.gameObject.SetActive(true);
                     victoryTittle.gameObject.SetActive(false);
                     SwitchGameStates(GameStates.Defeat);
-                    StageManager.Instance.ResetNPC();
+                    //StageManager.Instance.ResetNPC();
                     SetScoreOrKillData((int)score, scoreText, true);
                     SetScoreOrKillData(kill, killText, false);
                     CloseUI(pauseUIContainer, 0);

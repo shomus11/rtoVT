@@ -29,7 +29,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Enemies List")]
     public List<EnemyBehavior> enemies;
-    List<EnemyBehavior> enemiesTemp;
+    [SerializeField]List<EnemyBehavior> enemiesTemp;
     [Space(10)]
 
     [Header("Enemies Position setup")]
@@ -53,6 +53,8 @@ public class StageManager : MonoBehaviour
 
     private int count = 0;
 
+    public int CurrentStage { get => currentStage; set => currentStage = value; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -68,29 +70,31 @@ public class StageManager : MonoBehaviour
         movementCooldown = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
         InitNpcFixPosition();
         InitNPCStartPosition();
-        //movementTimerTemp = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (checkNPC)
-            if (AreAllEnemiesDisabled())
-            {
-                switchStage = true;
-                if (switchStage)
-                {
-                    InitNPC();
-                    switchStage = false;
-                }
-                //    enemies.Clear();
-                //    StopAllCoroutines();
-                //    StartCoroutine(WaitTimeForSecond(4f));
-                //    InitNPC();
-            }
         MoveNPC();
     }
 
+    public void DefeatEnemy(EnemyBehavior target)
+    {
+        target.gameObject.SetActive(false);
+        if (AreAllEnemiesDisabled())
+        {
+            ResetNPC();
+            InitNPC();
+        }
+    }
+
+    public void CheckTotalNPC() {
+        if (enemies.Count== 0)
+        {
+            InitNPC();
+        }
+    }
 
     public void ResetNPC()
     {
@@ -103,7 +107,7 @@ public class StageManager : MonoBehaviour
         {
             if (enemiesTemp[i].gameObject.activeInHierarchy)
             {
-                Destroy(enemiesTemp[i]);
+                Destroy(enemiesTemp[i].gameObject);
             }
 
         }
@@ -114,8 +118,7 @@ public class StageManager : MonoBehaviour
         checkNPC = false;
         InitNPCData();
         ResetNPC();
-        StartCoroutine(InitiatingSpawnNPC(stageDatas.stageSetups[currentStage].SpawnDelay));
-        //InvokeRepeating("MoveNPC", 5f, 6f);
+        StartCoroutine(InitiatingSpawnNPC(stageDatas.stageSetups[CurrentStage].SpawnDelay));
     }
 
     IEnumerator InitiatingSpawnNPC(float delay)
@@ -123,13 +126,16 @@ public class StageManager : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
         SpawnNPC();
+        NPCPattern();
+        movementTimer = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
+        movementCooldown = UnityEngine.Random.Range(movementTimerMin, movementTimerMax);
         checkNPC = true;
     }
 
     public void InitNPCData()
     {
-        currentStage++;
-        enemyPrefabs = stageDatas.stageSetups[currentStage].enemyPrefabs;
+        CurrentStage++;
+        enemyPrefabs = stageDatas.stageSetups[CurrentStage].enemyPrefabs;
     }
     void InitNpcFixPosition()
     {
@@ -181,7 +187,6 @@ public class StageManager : MonoBehaviour
             enemies.Add(enemy);
             enemies[i].transform.localPosition = enemiesStartPosition[i];
         }
-        NPCPattern();
     }
 
     bool AreAllEnemiesDisabled()

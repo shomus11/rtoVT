@@ -11,14 +11,18 @@ public class PlayerShot_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fireRate = 1f;
-        StartCoroutine(Shooting());
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void InitPlayerShoot()
+    {
+        fireRate = 1f;
+        StartCoroutine(Shooting());
     }
 
     private IEnumerator Shooting()

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1953141012, guid: 25621dc45f996474593a62f80b4b899e, type: 3}
+      propertyPath: fireRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4688694906432825608, guid: 25621dc45f996474593a62f80b4b899e, type: 3}
       propertyPath: m_FlipY
       value: 1
@@ -31,6 +35,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: -4968635863643948463}
+    - target: {fileID: 4688694906432825610, guid: 25621dc45f996474593a62f80b4b899e, type: 3}
+      propertyPath: scoreMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4688694906432825611, guid: 25621dc45f996474593a62f80b4b899e, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -13,7 +13,7 @@ public enum PowerUp
 
 public class PlayerController : MonoBehaviour
 {
-
+    public static PlayerController instance;
     Rigidbody2D rb;
     Vector2 movement;
     float spd;
@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     public List<PlayerShot_Controller> gunList;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +36,16 @@ public class PlayerController : MonoBehaviour
 
 
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        //InitPlayer();
+    }
+    public void InitPlayer(){
         spd = playerData.moveSpeed;
         hp = playerData.healthPoint;
-        anim = GetComponent<Animator>();
+        for (int i = 0; i < gunList.Count; i++)
+        {
+            gunList[i].InitPlayerShoot();
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +61,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.SwitchGameStates(GameStates.Defeat);
                 debugTxt.text = "Kalah";
                 GameManager.instance.FadeOut("Defeat");
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
 
             PlayerAnimationUpdater();
@@ -71,7 +82,6 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PowerUp.moreBullet:
-
                 break;
 
             default:
