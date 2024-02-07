@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     void Setup()
     {
-        gameState = GameStates.MainMenu;
+        SwitchGameStates(GameStates.MainMenu);
         pauseOpened = false;
 
         if (mainMenuUIContainer.gameObject)
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         if (target == pauseUIContainer)
         {
             DOTween.PauseAll();
-            gameState = GameStates.Pause;
+            SwitchGameStates(GameStates.Pause);
         }
 
 
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
         if (target == pauseUIContainer)
         {
             DOTween.PlayAll();
-            gameState = GameStates.Gameplay;
+            SwitchGameStates(GameStates.Gameplay);
         }
         float totalAnimationDuration = 0;
         Sequence sequence = DOTween.Sequence();
@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchGameStates(GameStates states)
     {
+        Debug.Log("Test state : " + states);
         gameState = states;
     }
 
@@ -236,14 +237,19 @@ public class GameManager : MonoBehaviour
                     CloseUI(pauseUIContainer, 0);
                     CloseUI(endGameUIContainer, 0);
                     //testing sound changed
+                    ResetScore();
                     SoundManager.instance.SwitchOrPlayBGM("gameplay_sound");
                     StageManager.Instance.InitNPC();
+                    //SceneManager.LoadScene(sceneName);
                 }
                 else if (sceneName == "Defeat")
                 {
                     defeatTittle.gameObject.SetActive(true);
                     victoryTittle.gameObject.SetActive(false);
-                    gameState = GameStates.Defeat;
+                    SwitchGameStates(GameStates.Defeat);
+                    StageManager.Instance.ResetNPC();
+                    SetScoreOrKillData((int)score, scoreText, true);
+                    SetScoreOrKillData(kill, killText, false);
                     CloseUI(pauseUIContainer, 0);
                     OpenUI(endGameUIContainer, 1);
                 }
@@ -251,7 +257,9 @@ public class GameManager : MonoBehaviour
                 {
                     defeatTittle.gameObject.SetActive(false);
                     victoryTittle.gameObject.SetActive(true);
-                    gameState = GameStates.Victory;
+                    SwitchGameStates(GameStates.Victory);
+                    SetScoreOrKillData((int)score, scoreText, true);
+                    SetScoreOrKillData(kill, killText, false);
                     CloseUI(pauseUIContainer, 0);
                     OpenUI(endGameUIContainer, 1);
                 }
@@ -278,6 +286,20 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         });
 
+    }
+
+
+    int kill = 0;
+    float score = 0;
+    void ResetScore()
+    {
+        kill = 0;
+        score = 0;
+    }
+    public void AddKillAndScore(float scoreMultiplier)
+    {
+        kill++;
+        score += scoreMultiplier * 100;
     }
 
 

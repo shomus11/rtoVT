@@ -37,27 +37,35 @@ public class EnemyShot_Controller : MonoBehaviour
     {
         while (true)
         {
-            if (GameManager.instance.gameState == GameStates.Gameplay)
+            float Rand = Random.Range(0, 1000);
+            if (Rand < 500)
             {
-                GameObject projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.EnemyProjectilePooledList);
-                if (projectile == null)
-                {
-                    ObjectPooler.sharedInstance.InitSpawnObject(
-                        ObjectPooler.sharedInstance.EnemyProjectilePrefabs,
-                        ObjectPooler.sharedInstance.EnemyProjectilePooledList,
-                        ObjectPooler.sharedInstance.EnemyProjectileAmountToPool,
-                        ObjectPooler.sharedInstance.EnemyProjectileContainer
-                        );
-                    projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.EnemyProjectilePooledList);
-                }
-                if (projectile != null)
-                {
-                    projectile.transform.position = transform.position;
-                    projectile.transform.rotation = Quaternion.EulerAngles(transform.localRotation * Vector2.down);
-                    projectile.SetActive(true);
-                }
+                spawnProjectile();
             }
             yield return new WaitForSeconds(fireRate);
+        }
+    }
+    void spawnProjectile()
+    {
+        if (GameManager.instance.gameState == GameStates.Gameplay)
+        {
+            GameObject projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.EnemyProjectilePooledList);
+            if (projectile == null)
+            {
+                ObjectPooler.sharedInstance.InitSpawnObject(
+                    ObjectPooler.sharedInstance.EnemyProjectilePrefabs,
+                    ObjectPooler.sharedInstance.EnemyProjectilePooledList,
+                    ObjectPooler.sharedInstance.EnemyProjectileAmountToPool,
+                    ObjectPooler.sharedInstance.EnemyProjectileContainer
+                    );
+                projectile = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.EnemyProjectilePooledList);
+            }
+            if (projectile != null)
+            {
+                projectile.transform.position = transform.position;
+                projectile.transform.rotation = Quaternion.EulerAngles(transform.localRotation * Vector2.down);
+                projectile.SetActive(true);
+            }
         }
     }
 }

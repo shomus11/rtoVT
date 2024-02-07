@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private Animator anim;
+    public float scoreMultiplier = 1;
     private Rigidbody2D rb;
     private Vector2 startPos;
     private Vector2 endPos;
@@ -30,6 +31,7 @@ public class EnemyBehavior : MonoBehaviour
             if (enemyHealthPoint < 0f)
             {
                 // proto_enemySpawn.Instance.enemies.Remove(this);
+                GameManager.instance.AddKillAndScore(scoreMultiplier);
                 gameObject.SetActive(false);
 
             }

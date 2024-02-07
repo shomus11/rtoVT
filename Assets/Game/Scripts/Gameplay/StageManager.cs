@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
     public StageData stageDatas;
     [SerializeField] int currentStage = -1;
     bool switchStage = false;
-    bool checkNPC = false;
+    [SerializeField] bool checkNPC = false;
 
     public GameObject enemyPrefabs;
     public int maxEnemy = 30;
@@ -25,8 +25,11 @@ public class StageManager : MonoBehaviour
     int rowEnemy = 3;
     int columEnemy = 10;
 
+
+
     [Header("Enemies List")]
     public List<EnemyBehavior> enemies;
+    List<EnemyBehavior> enemiesTemp;
     [Space(10)]
 
     [Header("Enemies Position setup")]
@@ -88,17 +91,36 @@ public class StageManager : MonoBehaviour
         MoveNPC();
     }
 
+
+    public void ResetNPC()
+    {
+        Debug.Log("Reseting");
+        enemiesTemp = enemies;
+
+        enemies = new List<EnemyBehavior>();
+
+        for (int i = 0; i < enemiesTemp.Count; i++)
+        {
+            if (enemiesTemp[i].gameObject.activeInHierarchy)
+            {
+                Destroy(enemiesTemp[i]);
+            }
+
+        }
+    }
+
     public void InitNPC()
     {
-
+        checkNPC = false;
         InitNPCData();
+        ResetNPC();
         StartCoroutine(InitiatingSpawnNPC(stageDatas.stageSetups[currentStage].SpawnDelay));
         //InvokeRepeating("MoveNPC", 5f, 6f);
     }
 
     IEnumerator InitiatingSpawnNPC(float delay)
     {
-        checkNPC = false;
+
         yield return new WaitForSeconds(delay);
         SpawnNPC();
         checkNPC = true;
@@ -164,7 +186,11 @@ public class StageManager : MonoBehaviour
 
     bool AreAllEnemiesDisabled()
     {
-        return enemies.All(enemy => !enemy.gameObject.activeSelf);
+        if (checkNPC)
+            return enemies.All(enemy => !enemy.gameObject.activeSelf);
+        else
+            return false;
+
     }
 
     IEnumerator WaitTimeForSecond(float value)
