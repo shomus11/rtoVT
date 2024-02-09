@@ -17,12 +17,17 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Vector2 movement;
     float spd;
-    float hp;
+    [SerializeField] float hp;
     public PlayerData playerData;
     public TextMeshProUGUI debugTxt;
     private Animator anim;
 
     public List<PlayerShot_Controller> gunList;
+
+    [Header("Homming Component")]
+    public GameObject hommingPrefabs;
+    public float hommingCooldown;
+    [SerializeField] float hommingCooldownTemp;
 
     private void Awake()
     {
@@ -37,9 +42,12 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        hommingCooldownTemp = 0;
         //InitPlayer();
     }
-    public void InitPlayer(){
+    public void InitPlayer()
+    {
         spd = playerData.moveSpeed;
         hp = playerData.healthPoint;
         for (int i = 0; i < gunList.Count; i++)
@@ -63,11 +71,28 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.FadeOut("Defeat");
                 gameObject.SetActive(false);
             }
+            if (hommingCooldownTemp <= 0)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                {
+                    SpawnHomming();
+                }
+            }
+
+            if (hommingCooldownTemp >= 0)
+            {
+                hommingCooldownTemp -= Time.deltaTime;
+            }
 
             PlayerAnimationUpdater();
         }
     }
 
+    public void SpawnHomming()
+    {
+        GameObject go = Instantiate(hommingPrefabs, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        hommingCooldownTemp = hommingCooldown;
+    }
 
     public void UpgradePowers(PowerUp powerUp, float value = 0)
     {

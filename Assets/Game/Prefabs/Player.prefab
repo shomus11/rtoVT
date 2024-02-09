@@ -149,7 +149,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.8, y: 10.8}
+    oldSize: {x: 8.307693, y: 8.307693}
     newSize: {x: 10.8, y: 10.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -172,6 +172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 627a31c049c717b4e84370e5ef170077, type: 2}
   debugTxt: {fileID: 0}
+  gunList: []
+  hommingPrefabs: {fileID: 8427496040005380678, guid: 36e14b23c8a9ce244b2029ebcde076b8, type: 3}
+  hommingCooldown: 30
+  hommingCooldownTemp: 0
 --- !u!1 &8391116140841731277
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +223,7 @@ MonoBehaviour:
   projectileObj: {fileID: 6093491670681037110, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
   fireRate: 0.1
   angle: {x: 0, y: 1}
+  damageAmplified: 0
 --- !u!1 &8391116141714111231
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +271,7 @@ MonoBehaviour:
   projectileObj: {fileID: 6093491670681037110, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
   fireRate: 0.1
   angle: {x: 0, y: 1}
+  damageAmplified: 0
 --- !u!1 &8391116141753040269
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,3 +319,4 @@ MonoBehaviour:
   projectileObj: {fileID: 6093491670681037110, guid: 4e74ebe7b421b1a44b5f2259d374a7da, type: 3}
   fireRate: 0.1
   angle: {x: 0, y: 1}
+  damageAmplified: 0

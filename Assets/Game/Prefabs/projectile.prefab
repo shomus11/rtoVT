@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   dmg: 1
+  dmgAmp: 0
   direction: {x: 0, y: 0}
   isPowered: 0
 --- !u!61 &8716680971363142523

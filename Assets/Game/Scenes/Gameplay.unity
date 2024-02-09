@@ -2194,9 +2194,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7813612038d48f42a3cf4fb58381875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   playerData: {fileID: 11400000, guid: 627a31c049c717b4e84370e5ef170077, type: 2}
   debugTxt: {fileID: 0}
   gunList: []
+  hommingPrefabs: {fileID: 0}
+  hommingCooldown: 0
+  hommingCooldownTemp: 0
 --- !u!212 &972301966
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3669,6 +3673,7 @@ MonoBehaviour:
     - {fileID: 774625762}
   baseSpawn: {fileID: 0}
   enemies: []
+  enemiesTemp: []
   enemiesfixPosition: []
   enemiesStartPosition: []
   movementTimerMin: 6
