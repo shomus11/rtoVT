@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public GameObject hommingPrefabs;
     public float hommingCooldown;
     [SerializeField] float hommingCooldownTemp;
+    bool explosionOnce = false;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             gunList[i].InitPlayerShoot();
         }
+        explosionOnce = false;
     }
 
     // Update is called once per frame
@@ -66,6 +68,26 @@ public class PlayerController : MonoBehaviour
 
             if (hp < 0f)
             {
+                if (!explosionOnce)
+                {
+                    GameObject explosion = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.explosionPooledList);
+                    if (!explosion)
+                    {
+                        ObjectPooler.sharedInstance.InitSpawnObject(
+                            ObjectPooler.sharedInstance.explosionPrefabs,
+                            ObjectPooler.sharedInstance.explosionPooledList,
+                            ObjectPooler.sharedInstance.explosionAmountToPool,
+                            ObjectPooler.sharedInstance.explosionContainer);
+                        explosion = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.explosionPooledList);
+                    }
+                    explosion.transform.localPosition = gameObject.transform.localPosition;
+                    explosion.gameObject.SetActive(true);
+                    explosion.GetComponent<ExplosionBehavior>().initExplosion();
+                    //explosion.gameObject.transform.localScale = explosion.gameObject.transform.localScale * 4;
+                    explosionOnce = true;
+                }
+
+
                 GameManager.instance.SwitchGameStates(GameStates.Defeat);
                 debugTxt.text = "Kalah";
                 GameManager.instance.FadeOut("Defeat");

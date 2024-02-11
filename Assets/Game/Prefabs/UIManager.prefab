@@ -3912,6 +3912,7 @@ Transform:
   - {fileID: 5599295113888177025}
   - {fileID: 528513749}
   - {fileID: 1690438672}
+  - {fileID: 5550088115660568070}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3962,6 +3963,10 @@ MonoBehaviour:
   EnemyProjectilePrefabs: {fileID: 1287374792270613173, guid: 6d5102e63bc719248aa81c07be0e3398, type: 3}
   EnemyProjectileAmountToPool: 0
   EnemyProjectileContainer: {fileID: 1690438672}
+  explosionPooledList: []
+  explosionPrefabs: {fileID: 4929278297679891699, guid: c424e9b316f20e24abfc68992429d0c1, type: 3}
+  explosionAmountToPool: 20
+  explosionContainer: {fileID: 5550088115660568070}
 --- !u!1 &5599295113079801312
 GameObject:
   m_ObjectHideFlags: 0
@@ -8251,6 +8256,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &9129376814636102081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5550088115660568070}
+  m_Layer: 0
+  m_Name: ExplosionContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5550088115660568070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129376814636102081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5599295113036837072}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9149911560024218792
 GameObject:
   m_ObjectHideFlags: 0

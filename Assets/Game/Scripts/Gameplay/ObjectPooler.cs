@@ -24,6 +24,12 @@ public class ObjectPooler : MonoBehaviour
     public int EnemyProjectileAmountToPool;
     public Transform EnemyProjectileContainer;
 
+    [Header("Explosion Component")]
+    public List<GameObject> explosionPooledList;
+    public GameObject explosionPrefabs;
+    public int explosionAmountToPool;
+    public Transform explosionContainer;
+
     void Awake()
     {
         sharedInstance = this;
@@ -33,6 +39,7 @@ public class ObjectPooler : MonoBehaviour
         InitSpawnObject(sfxPrefabs, sfxPooledObject, sfxAmountToPool, sfxContainer);
         InitSpawnObject(EnemyProjectilePrefabs, EnemyProjectilePooledList, EnemyProjectileAmountToPool, EnemyProjectileContainer);
         InitSpawnObject(projectilePrefabs, projectilePooledList, projectileAmountToPool, projectTileContainer);
+        InitSpawnObject(explosionPrefabs, explosionPooledList, explosionAmountToPool, explosionContainer);
     }
 
     void Start()

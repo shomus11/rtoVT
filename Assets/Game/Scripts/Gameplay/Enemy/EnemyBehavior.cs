@@ -12,12 +12,14 @@ public class EnemyBehavior : MonoBehaviour
     public float enemyHealthPoint = 3f;
     private bool isCurrentlyAttacking = false;
     Sequence npcSequence;
+    bool explosionOnce = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyShot = GetComponent<EnemyShot_Controller>();
         startPos = transform.position;
+        explosionOnce = false;
 
     }
 
@@ -31,6 +33,25 @@ public class EnemyBehavior : MonoBehaviour
             if (enemyHealthPoint < 0f)
             {
                 // proto_enemySpawn.Instance.enemies.Remove(this);
+                if (!explosionOnce)
+                {
+                    GameObject explosion = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.explosionPooledList);
+                    if (!explosion)
+                    {
+                        ObjectPooler.sharedInstance.InitSpawnObject(
+                            ObjectPooler.sharedInstance.explosionPrefabs,
+                            ObjectPooler.sharedInstance.explosionPooledList,
+                            ObjectPooler.sharedInstance.explosionAmountToPool,
+                            ObjectPooler.sharedInstance.explosionContainer);
+                        explosion = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.explosionPooledList);
+                    }
+                    explosion.transform.localPosition = gameObject.transform.localPosition;
+                    explosion.gameObject.SetActive(true);
+                    explosion.GetComponent<ExplosionBehavior>().initExplosion();
+                    //explosion.gameObject.transform.localScale = explosion.gameObject.transform.localScale * 4;
+                    explosionOnce = true;
+                }
+
                 GameManager.instance.AddKillAndScore(scoreMultiplier);
                 StageManager.Instance.DefeatEnemy(this);
 

@@ -39,6 +39,21 @@ public class HommingBehavior : MonoBehaviour
     }
     void ExplosionAround()
     {
+        GameObject explosion = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.explosionPooledList);
+        if (!explosion)
+        {
+            ObjectPooler.sharedInstance.InitSpawnObject(
+                ObjectPooler.sharedInstance.explosionPrefabs,
+                ObjectPooler.sharedInstance.explosionPooledList,
+                ObjectPooler.sharedInstance.explosionAmountToPool,
+                ObjectPooler.sharedInstance.explosionContainer);
+            explosion = ObjectPooler.sharedInstance.GetPooledObject(ObjectPooler.sharedInstance.explosionPooledList);
+        }
+        explosion.transform.localPosition = gameObject.transform.localPosition;
+        explosion.gameObject.SetActive(true);
+        explosion.GetComponent<ExplosionBehavior>().initExplosion();
+        explosion.gameObject.transform.localScale = explosion.gameObject.transform.localScale * 3;
+
         for (int i = 0; i < enemyAround.Count; i++)
         {
             if (enemyAround[i])
