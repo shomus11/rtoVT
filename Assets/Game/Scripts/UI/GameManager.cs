@@ -68,18 +68,18 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
                 PauseOrResumeGame();
 
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                FadeOut("Victory");
-                SetScoreOrKillData(50000, scoreText, true);
-                SetScoreOrKillData(500, killText, false);
-            }
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                FadeOut("Defeat");
-                SetScoreOrKillData(1000, scoreText, true);
-                SetScoreOrKillData(10, killText, false);
-            }
+            //if (Input.GetKeyDown(KeyCode.P))
+            //{
+            //    FadeOut("Victory");
+            //    SetScoreOrKillData(50000, scoreText, true);
+            //    SetScoreOrKillData(500, killText, false);
+            //}
+            //if (Input.GetKeyDown(KeyCode.O))
+            //{
+            //    FadeOut("Defeat");
+            //    SetScoreOrKillData(1000, scoreText, true);
+            //    SetScoreOrKillData(10, killText, false);
+            //}
         }
         if (gameState == GameStates.MainMenu)
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -105,9 +105,15 @@ public class GameManager : MonoBehaviour
     public void PauseOrResumeGame()
     {
         if (!pauseOpened)
+        {
+            SwitchGameStates(GameStates.Pause);
             OpenUI(pauseUIContainer);
+        }
         else
+        {
+            SwitchGameStates(GameStates.Gameplay);
             CloseUI(pauseUIContainer);
+        }
     }
 
     void Setup()
@@ -139,7 +145,6 @@ public class GameManager : MonoBehaviour
         if (target == pauseUIContainer)
         {
             DOTween.PauseAll();
-            SwitchGameStates(GameStates.Pause);
         }
 
 
@@ -161,7 +166,6 @@ public class GameManager : MonoBehaviour
         if (target == pauseUIContainer)
         {
             DOTween.PlayAll();
-            SwitchGameStates(GameStates.Gameplay);
         }
         float totalAnimationDuration = 0;
         Sequence sequence = DOTween.Sequence();

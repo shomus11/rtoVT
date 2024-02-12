@@ -29,7 +29,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Enemies List")]
     public List<EnemyBehavior> enemies;
-    [SerializeField]List<EnemyBehavior> enemiesTemp;
+    [SerializeField] List<EnemyBehavior> enemiesTemp;
     [Space(10)]
 
     [Header("Enemies Position setup")]
@@ -76,7 +76,7 @@ public class StageManager : MonoBehaviour
     void Update()
     {
         if (checkNPC)
-        MoveNPC();
+            MoveNPC();
     }
 
     public void DefeatEnemy(EnemyBehavior target)
@@ -89,8 +89,9 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    public void CheckTotalNPC() {
-        if (enemies.Count== 0)
+    public void CheckTotalNPC()
+    {
+        if (enemies.Count == 0)
         {
             InitNPC();
         }
@@ -134,8 +135,16 @@ public class StageManager : MonoBehaviour
 
     public void InitNPCData()
     {
-        CurrentStage++;
-        enemyPrefabs = stageDatas.stageSetups[CurrentStage].enemyPrefabs;
+        if (currentStage < stageDatas.stageSetups.Count - 1)
+        {
+            CurrentStage++;
+            enemyPrefabs = stageDatas.stageSetups[CurrentStage].enemyPrefabs;
+        }
+        else
+        {
+            //win
+            GameManager.instance.FadeOut("Victory");
+        }
     }
     void InitNpcFixPosition()
     {

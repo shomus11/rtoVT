@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -19,7 +18,7 @@ public class PlayerController : MonoBehaviour
     float spd;
     [SerializeField] float hp;
     public PlayerData playerData;
-    public TextMeshProUGUI debugTxt;
+    //public TextMeshProUGUI debugTxt;
     private Animator anim;
 
     public List<PlayerShot_Controller> gunList;
@@ -89,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
 
                 GameManager.instance.SwitchGameStates(GameStates.Defeat);
-                debugTxt.text = "Kalah";
+                //debugTxt.text = "Kalah";
                 GameManager.instance.FadeOut("Defeat");
                 gameObject.SetActive(false);
             }
